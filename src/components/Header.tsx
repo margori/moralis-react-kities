@@ -4,8 +4,11 @@ import Nav from 'react-bootstrap/Nav';
 import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Container } from 'react-bootstrap';
+import { useMoralis } from 'react-moralis';
 
 const Header = () => {
+  const { isAuthenticated, user } = useMoralis();
+
   return (
     <Navbar collapseOnSelect variant="dark" bg="primary" expand="lg">
       <Container fluid={true}>
@@ -29,9 +32,14 @@ const Header = () => {
             <LinkContainer to="/create">
               <Nav.Link>Create</Nav.Link>
             </LinkContainer>
-            <LinkContainer to="/connect">
-              <Nav.Link>Connect</Nav.Link>
-            </LinkContainer>
+
+            {isAuthenticated ? (
+              <div className="nav-link">{user?.get('ethAddress')}</div>
+            ) : (
+              <LinkContainer to="/connect">
+                <Nav.Link>Connect</Nav.Link>
+              </LinkContainer>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
