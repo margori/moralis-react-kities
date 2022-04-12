@@ -1,54 +1,90 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import {
+  body,
+  ears,
+  eye,
+  eyes,
+  head,
+  headDot,
+  headLeftDot,
+  headRightDot,
+  insideEar,
+  leftEar,
+  nose,
+  pupil,
+  rightEar,
+  tail,
+} from './Kitty.styles';
 
-const Kitty = () => {
+const Kitty = ({ dna }: { dna: string }) => {
+  const Head = head(dna);
+  const HeadDot = headDot(dna);
+  const HeadLeftDot = headLeftDot(dna);
+  const HeadRightDot = headRightDot(dna);
+  const Ears = ears(dna);
+  const LeftEar = leftEar(dna);
+  const RightEar = rightEar(dna);
+  const InsideEar = insideEar(dna);
+
+  const Eyes = eyes(dna);
+  const Eye = eye(dna);
+  const Pupil = pupil(dna);
+
+  const Nose = nose(dna);
+
+  const Tail = tail(dna);
+  const Body = body(dna);
+
   return (
     <div className="cat">
-      <div className="cat__ear">
-        <div id="leftEar" className="cat__ear--left">
-          <div className="cat__ear--left-inside"></div>
-        </div>
-        <div id="rightEar" className="cat__ear--right">
-          <div className="cat__ear--right-inside"></div>
-        </div>
-      </div>
+      <Ears>
+        <LeftEar>
+          <InsideEar></InsideEar>
+        </LeftEar>
+        <RightEar>
+          <InsideEar></InsideEar>
+        </RightEar>
+      </Ears>
 
-      <div id="head" className="cat__head movingHead">
-        <div id="midDot" className="cat__head-dots">
-          <div id="leftDot" className="cat__head-dots_left"></div>
-          <div id="rightDot" className="cat__head-dots_right"></div>
-        </div>
-        <div className="cat__eye">
-          <div className="cat__eye--left">
-            <span className="pupil-left"></span>
-          </div>
-          <div className="cat__eye--right">
-            <span className="pupil-right"></span>
-          </div>
-        </div>
-        <div className="cat__nose"></div>
+      <Head>
+        <HeadDot>
+          <HeadLeftDot></HeadLeftDot>
+          <HeadRightDot></HeadRightDot>
+        </HeadDot>
+        <Eyes>
+          <Eye>
+            <Pupil></Pupil>
+          </Eye>
+          <Eye>
+            <Pupil></Pupil>
+          </Eye>
+        </Eyes>
 
-        <div className="cat__mouth-contour"></div>
-        <div className="cat__mouth-left"></div>
-        <div className="cat__mouth-right"></div>
+        <Nose></Nose>
 
-        <div className="cat__whiskers-left"></div>
-        <div className="cat__whiskers-right"></div>
-      </div>
+        <div className="cat_mouth-contour"></div>
+        <div className="cat_mouth-left"></div>
+        <div className="cat_mouth-right"></div>
 
-      <div className="cat__body">
-        <div className="cat__chest"></div>
+        <div className="cat_whiskers-left"></div>
+        <div className="cat_whiskers-right"></div>
+      </Head>
 
-        <div className="cat__chest_inner"></div>
+      <Body>
+        <div className="cat_chest"></div>
 
-        <div className="cat__paw-left"></div>
-        <div className="cat__paw-left_inner"></div>
+        <div className="cat_chest_inner"></div>
 
-        <div className="cat__paw-right"></div>
-        <div className="cat__paw-right_inner"></div>
+        <div className="cat_paw-left"></div>
+        <div className="cat_paw-left_inner"></div>
 
-        <div id="tail" className="cat__tail"></div>
-      </div>
+        <div className="cat_paw-right"></div>
+        <div className="cat_paw-right_inner"></div>
+
+        <Tail></Tail>
+      </Body>
+      <div>{dna}</div>
     </div>
   );
 };
